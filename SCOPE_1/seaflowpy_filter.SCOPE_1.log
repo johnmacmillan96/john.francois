@@ -1,0 +1,72 @@
+command=seaflowpy_filter --s3 -c SCOPE_1 -d SCOPE_1.db -t -p 16 -o SCOPE_1_opp
+real_command=/bin/bash -l -c "cd /mnt/raid/SCOPE_1 >/dev/null && seaflowpy_filter --s3 -c SCOPE_1 -d SCOPE_1.db -t -p 16 -o SCOPE_1_opp"
+Defined parameters:
+{
+  "opp_dir": "SCOPE_1_opp", 
+  "s3": true, 
+  "cruise": "SCOPE_1", 
+  "db": "SCOPE_1.db", 
+  "width": 1.0, 
+  "version": "0.4.1.dev2+ng8029ebe", 
+  "twopass": true, 
+  "offset": 0.0, 
+  "process_count": 16, 
+  "resolution": 10.0
+}
+
+Beginning two-pass filter process
+*********************************
+PASS 1
+*********************************
+
+Filtering 1483 EVT files. Progress every 10% (approximately)
+File: 149/1483 (10.05%) Particles this block: 2918164 / 328357540 (337559005) 0.0089 (0.0086) elapsed: 19.18s
+File: 297/1483 (20.03%) Particles this block: 3078053 / 371392401 (385839919) 0.0083 (0.0080) elapsed: 39.09s
+File: 445/1483 (30.01%) Particles this block: 3268895 / 364799028 (382675073) 0.0090 (0.0085) elapsed: 58.27s
+File: 594/1483 (40.05%) Particles this block: 2863645 / 338950069 (352554240) 0.0084 (0.0081) elapsed: 77.05s
+File: 742/1483 (50.03%) Particles this block: 2548394 / 390169839 (393631231) 0.0065 (0.0065) elapsed: 96.92s
+File: 890/1483 (60.01%) Particles this block: 2662290 / 396310116 (402051438) 0.0067 (0.0066) elapsed: 117.03s
+File: 1039/1483 (70.06%) Particles this block: 2872193 / 371316854 (377717823) 0.0077 (0.0076) elapsed: 136.46s
+File: 1187/1483 (80.04%) Particles this block: 2801774 / 395285647 (402103656) 0.0071 (0.0070) elapsed: 156.79s
+File: 1335/1483 (90.02%) Particles this block: 2816411 / 390580426 (397822083) 0.0072 (0.0071) elapsed: 176.95s
+File: 1483/1483 (100.00%) Particles this block: 2853592 / 362390930 (368693108) 0.0079 (0.0077) elapsed: 196.23s
+
+Input EVT files = 1483
+Parsed EVT files = 1483
+EVT particles = 3800647576 (19367839.01 p/s)
+EVT noise filtered particles = 3709552850 (18903626.54 p/s)
+OPP particles = 28683411 (146168.69 p/s)
+OPP/EVT ratio = 0.0077 (0.0075)
+Filtering completed in 196.23 seconds
+
+*********************************
+PASS 2
+*********************************
+Average filter parameters:
+{
+  "origin": 352.0, 
+  "width": 1.0, 
+  "notch1": 1.6419406575781876, 
+  "notch2": 1.5417921686746987, 
+  "offset": 0.0
+}
+
+Filtering 1483 EVT files. Progress every 10% (approximately)
+File: 149/1483 (10.05%) Particles this block: 3065063 / 328282154 (337469453) 0.0093 (0.0091) elapsed: 18.16s
+File: 297/1483 (20.03%) Particles this block: 3165443 / 371461009 (385921280) 0.0085 (0.0082) elapsed: 37.24s
+File: 445/1483 (30.01%) Particles this block: 3274983 / 364746775 (382620722) 0.0090 (0.0086) elapsed: 55.38s
+File: 594/1483 (40.05%) Particles this block: 2971231 / 339002228 (352609614) 0.0088 (0.0084) elapsed: 72.67s
+File: 742/1483 (50.03%) Particles this block: 2545586 / 390150100 (393611392) 0.0065 (0.0065) elapsed: 92.11s
+File: 890/1483 (60.01%) Particles this block: 2574347 / 396336727 (402078445) 0.0065 (0.0064) elapsed: 111.94s
+File: 1039/1483 (70.06%) Particles this block: 2849352 / 371300396 (377700671) 0.0077 (0.0075) elapsed: 130.42s
+File: 1187/1483 (80.04%) Particles this block: 2818111 / 395310437 (402128896) 0.0071 (0.0070) elapsed: 151.73s
+File: 1335/1483 (90.02%) Particles this block: 2704306 / 390603343 (397845867) 0.0069 (0.0068) elapsed: 174.15s
+File: 1483/1483 (100.00%) Particles this block: 2785162 / 362359681 (368661236) 0.0077 (0.0076) elapsed: 196.16s
+
+Input EVT files = 1483
+Parsed EVT files = 1483
+EVT particles = 3800647576 (19374857.74 p/s)
+EVT noise filtered particles = 3709552850 (18910477.05 p/s)
+OPP particles = 28753584 (146579.39 p/s)
+OPP/EVT ratio = 0.0078 (0.0076)
+Filtering completed in 196.16 seconds
