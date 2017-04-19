@@ -1,0 +1,109 @@
+#library(zoo)
+#########################################
+############### SET UP ##################
+#########################################
+path <- "/Users/John/Documents/Armbrust/Par/"
+
+# Get all Scope cruise SFL's
+for (i in c(1,2,3,4,5,6,9,10,11,12,13,14,15,16,17,18,19)) {
+    scope <- read.csv(paste0(path,"scope",i,".csv"))[,c("date","par")]
+    scope$date <- as.POSIXct(scope$date, format = "%FT%T", tz = "GMT")
+    assign(paste0("scope",i), scope)
+}
+
+# Plot all Scope cruise SFL's
+par(mfrow=c(4,5), mar=c(2,1,1,1), oma=c(1,1,0,0))
+
+for (i in c(1,2,3,4,5,6,9,10,11,12,13,14,15,16,17,18,19)) {
+    file <- get(paste0("scope",i))
+    plot(file$par, type='l')
+}
+
+#########################################
+############### function ################
+#########################################
+
+# Redquires:
+# 1. A data frame representing cruise SFL data, with the first
+#   column representing time (MUST BE in as.POSIXct), and the second column
+#   representing par values of sunlight intensity
+# 2. A integer value representing the par value that signifies dawn or dusk
+
+get.dawn.dusk.time <- function(x, cutoff) {
+    # assign names to the time and par parameters
+    time <- x[,1]
+    par <- x[,2]
+
+    # We will define dawn and dusk times to occur when par goes from above 10 -> below 10,
+    # or from below 10 -> above 10
+    above <- par > cutoff
+    intersect <- which(diff(above)!=0)
+
+    # We will then make sure we are only getting points that fall within the sequential pattern
+    # of natural dusk and dawns, AKA they must be seperated by equal times
+
+    #revision <- intersect[which(diff(intersect) > mean(diff(intersect)))]
+    #dawn.dusk <- time[revision]
+
+    dawn.dusk <- time[intersect]
+    return(dawn.dusk)
+}
+
+
+
+#########################################
+############### TESTING #################
+#########################################
+
+# Run files
+for (i in c(1,2,3,4,5,6,9,10,11,12,13,14,15,16,17,18,19)) {
+    scope <- get(paste0("scope",i))
+    assign(paste0("s",i,"dd"), get.dawn.dusk.time(scope, 10))
+}
+
+
+# Plot test
+par(mfrow=c(4,5), mar=c(2,1,1,1), oma=c(1,1,0,0))
+for (i in c(1,2,3,4,5,6,9,10,11,12,13,14,15,16,17,18,19)) {
+    scope <- get(paste0("scope",i))
+    ss <- get(paste0("s",i,"dd"))
+    plot(scope$date, scope$par)
+    points <- which(scope$date %in% ss)
+    points(scope[points,], col = 'red', pch=19)
+}
+
+# Diff test
+for (i in c(1,2,3,4,5,6,9,10,11,12,13,14,15,16,17,18,19)) {
+    dd <- get(paste0("s",i,"dd"))
+
+    print(diff(dd))
+}
+
+
+
+
+
+# ss <- smooth.spline(scope1$date, scope1$par)
+# ss.mat <- as.matrix(cbind(ss$x,ss$y))
+# spline <- data.frame(spline(ss.mat[,1],ss.mat[,2],n=length(ss.mat[,1])))
+#
+#
+# dd <- scope2$date[abs(scope2$par - 10) < 5]
+# plot(dd)
+# plot(scope2$par)
+# par(mfrow=c(2,1))
+#
+#
+# above <- scope2$par > 10
+# intersect <- which(diff(above)!=0)
+# dd <- scope2$date[intersect[which(diff(intersect) > mean(diff(intersect)))]]
+#
+# dd <- scope2$date[intersect[which(abs(diff(intersect) - mean(diff(intersect))) < 2 * sd(diff(intersect)))]]
+#
+#
+# s1 <- data.frame(scope1$date, scope1$par)
+# s6 <- data.frame(scope6$date, scope6$par)
+
+
+plot(scope6$date, scope6$par)
+points <- which(scope2$date %in% ss2d)

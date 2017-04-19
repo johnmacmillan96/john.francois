@@ -1,0 +1,31 @@
+\name{get.dawn.dusk.time}
+\alias{get.dawn.dusk.time}
+\title{Extract dawn and dusk times from a time series of par values}
+\description{
+Extracts the time that dawn and dusk (as.POSIXct) from a time series consisting of par (light intensity) values. Dawn is defined as the point where the par value goes from night -> day. Dusk is defined as the point where the par value goes from day -> to night. This is useful for gating purposes for flow- cytometry. Dawn and dusk tend to be the extremes of the flourences for most phytoplankton.
+}
+\usage{
+get.dawndusk(x = data.frame(time, par), cutoff = 10)
+}
+\arguments{
+\item{x}{
+A data frame with two columns. The first column must be time values in as.POSIXct
+format. The second column must be par values.
+}
+\item{cutoff}{
+An integer representing the smallest par value that is considered 'daytime.' (We
+recommend using 10).
+}
+}
+
+\value{
+A vector consisting of dawn and dusk time values in as.POSIXct format}
+\author{
+John MacMillan
+}
+
+\examples{
+x <- data.frame(time = c(...),par = c(...))
+x$time <- as.POSIXct(x$time)
+dd.times <- get.dawn.dusk.time(x)
+}
