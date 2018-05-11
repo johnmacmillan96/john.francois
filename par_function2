@@ -50,6 +50,8 @@ get.dawn.dusk.time <- function(x, cutoff) {
 }
 
 
+s2dd <- get.dawn.dusk.time(scope2, 20)
+
 
 #########################################
 ############### TESTING #################

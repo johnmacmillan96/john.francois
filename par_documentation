@@ -26,8 +26,8 @@ John MacMillan
 }
 
 \examples{
-par.data.csv <- system.file("extdata/par/par.csv", package="popcycle")
-par.data <- read.csv(par.data.csv)[,c("date","par")]
+par.data.csv <- system.file("extdata/par/par_data.csv", package="popcycle")
+par.data <- read.csv(par.data.csv)
 par.data$date <- as.POSIXct(par.data$date, , format = "%FT%T", tz = "GMT")
 dawn.dusk.times <- get.dawn.dusk.time(par.data, 10)
 }
